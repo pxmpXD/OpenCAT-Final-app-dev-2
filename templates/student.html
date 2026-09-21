@@ -1,0 +1,77 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>OpenCAT</title>
+  <link rel="stylesheet" href="/static/css/style.css">
+  
+</head>
+<body>
+  <p><a href="/">&larr; Home</a></p>
+  <h1>Student Area</h1>
+
+  
+  <div id="login-section" class="card">
+    <h3>Enter your details</h3>
+    <input id="student-name" type="text" placeholder="Your full name">
+    <select id="student-grade"></select>
+    <button id="login-btn">Continue</button>
+  </div>
+
+  
+  <div id="main-section" class="hidden">
+    <p>Welcome, <span id="welcome-name"></span>! <button id="weakpoints-btn">My Weak Points</button></p>
+
+    <h2>Topics</h2>
+    <div id="topics-list"></div>
+  </div>
+
+  
+  <div id="quiz-section" class="hidden">
+    <h2 id="quiz-title"></h2>
+    <div id="quiz-questions"></div>
+    <button id="submit-quiz-btn">Submit Test</button>
+    <button id="back-from-quiz-btn">Cancel</button>
+  </div>
+
+  
+  <div id="results-section" class="hidden">
+    <h2>Results</h2>
+    <div id="results-summary"></div>
+    <div id="results-breakdown"></div>
+    <button id="back-from-results-btn">Back to Topics</button>
+  </div>
+
+  
+  <div id="weakpoints-section" class="hidden">
+    <h2>Your Weak Points</h2>
+    <h3>By Topic</h3>
+    <div id="weak-by-topic"></div>
+    <h3>By Question</h3>
+    <div id="weak-by-question"></div>
+    <button id="back-from-weak-btn">Back to Topics</button>
+  </div>
+
+  
+  <div id="flashcards-section" class="hidden">
+    <h2 id="flashcards-title"></h2>
+    <p id="flashcards-progress"></p>
+    <div id="flashcard-empty" class="hidden"><p>This topic has no flashcards yet.</p></div>
+    <div id="flashcard-viewer" class="hidden">
+      <div id="flashcard" class="flashcard">
+        <div id="flashcard-text" class="flashcard-text"></div>
+        <p id="flashcard-hint" class="flashcard-hint">Click the card to flip</p>
+      </div>
+      <div class="flashcard-controls">
+        <button id="flashcard-prev-btn">&larr; Previous</button>
+        <button id="flashcard-flip-btn">Flip</button>
+        <button id="flashcard-next-btn">Next &rarr;</button>
+      </div>
+    </div>
+    <button id="back-from-flashcards-btn">Back to Topics</button>
+  </div>
+
+  <script src="/static/js/api.js"></script>
+  <script src="/static/js/student.js"></script>
+</body>
+</html>

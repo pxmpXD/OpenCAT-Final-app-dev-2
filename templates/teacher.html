@@ -1,0 +1,119 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>OpenCAT</title>
+  <link rel="stylesheet" href="/static/css/style.css">
+</head>
+<body>
+  <p><a href="/">&larr; Home</a></p>
+  <h1>Teacher Area</h1>
+
+  
+  <div id="login-section" class="card">
+    <h3>Teacher Login</h3>
+    <input id="teacher-password" type="password" placeholder="Password">
+    <button id="login-btn">Login</button>
+    <p style="color:#888"><code>admin123</code> </p>
+  </div>
+
+  
+  <div id="main-section" class="hidden">
+
+    <div class="card">
+      <h3>Add a Topic</h3>
+      <select id="new-topic-grade"></select>
+      <input id="new-topic-name" type="text" placeholder="Topic name, e.g. Networks">
+      <input id="new-topic-desc" type="text" placeholder="Short description (optional)">
+      <button id="add-topic-btn">Add Topic</button>
+    </div>
+
+    <div class="card">
+      <h3>Filter by grade</h3>
+      <select id="filter-grade"></select>
+    </div>
+
+    <h2>Topics</h2>
+    <div id="topics-list"></div>
+
+    <div class="card">
+      <h3>Class Weak Points</h3>
+      <p>Aggregated across all students in the selected grade above.</p>
+      <button id="load-class-weakpoints-btn">Load Class Weak Points</button>
+      <div id="class-weakpoints"></div>
+    </div>
+  </div>
+
+  
+  <div id="topic-detail-section" class="hidden">
+    <button id="back-to-topics-btn">&larr; Back to Topics</button>
+    <h2 id="topic-detail-title"></h2>
+
+    <div class="card">
+      <h3>Notes</h3>
+      <div id="dropzone" class="dropzone">Drag &amp; drop note files here, or click to choose files</div>
+      <input type="file" id="file-input" class="hidden" multiple>
+      <div id="notes-list"></div>
+    </div>
+
+    <div class="card">
+      <h3> Generate from Notes </h3>
+      
+      <div class="ai-generate-row">
+        <input id="ai-question-count" type="number" min="1" max="20" value="6">
+        <button id="ai-generate-questions-btn">Generate Questions</button>
+      </div>
+      <div class="ai-generate-row">
+        <input id="ai-flashcard-count" type="number" min="1" max="20" value="8">
+        <button id="ai-generate-flashcards-btn">Generate Flashcards</button>
+      </div>
+      <p id="ai-generate-status"></p>
+    </div>
+
+    <div class="card">
+      <h3>Add a Question</h3>
+      <select id="question-type">
+        <option value="mcq">Multiple Choice</option>
+        <option value="short">Short Answer</option>
+      </select>
+      <textarea id="question-text" placeholder="Question text" rows="2"></textarea>
+      <input id="question-marks" type="number" min="1" value="1" placeholder="Marks">
+
+      <div id="mcq-fields">
+        <p>Options (one per line). Mark the correct one below.</p>
+        <textarea id="mcq-options" rows="4" placeholder="Option A&#10;Option B&#10;Option C&#10;Option D"></textarea>
+        <input id="mcq-correct-index" type="number" min="0" placeholder="Index of correct option (0 = first line)">
+      </div>
+
+      <div id="short-fields" class="hidden">
+        <p>Keywords the answer should contain (comma-separated). Used to auto-grade -- if the student's wording doesn't clearly match, it gets flagged for you to review.</p>
+        <input id="short-keywords" type="text" placeholder="e.g. volatile, temporary, memory">
+        <input id="short-model-answer" type="text" placeholder="Model answer (shown to you when reviewing)">
+      </div>
+
+      <button id="add-question-btn">Add Question</button>
+    </div>
+
+    <div class="card">
+      <h3>Existing Questions</h3>
+      <div id="questions-list"></div>
+    </div>
+
+    <div class="card">
+      <h3>Add a Flashcard</h3>
+      <p>Quick front/back study cards -- not graded, just for revision.</p>
+      <textarea id="flashcard-front" placeholder="Front (e.g. a term or question)" rows="2"></textarea>
+      <textarea id="flashcard-back" placeholder="Back (e.g. the definition or answer)" rows="2"></textarea>
+      <button id="add-flashcard-btn">Add Flashcard</button>
+    </div>
+
+    <div class="card">
+      <h3>Existing Flashcards</h3>
+      <div id="flashcards-list"></div>
+    </div>
+  </div>
+
+  <script src="/static/js/api.js"></script>
+  <script src="/static/js/teacher.js"></script>
+</body>
+</html>
