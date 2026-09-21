@@ -38,7 +38,7 @@ with -- useful for deciding what to go over again in the next lesson.
 |----------|----------------------------------|-----|
 | Backend  | Python (Flask)                   | Small, readable, easy to extend -- matches the course |
 | Database | MySQL                            | Matches the MySQL environment used in class |
-| AI       | Google Gemini (`gemini-2.5-flash` via the `google-genai` SDK) | Generates flashcards/questions from notes, constrained to strict JSON output |
+| AI       | Google Gemini (`gemini-3.6-flash` via the `google-genai` SDK) | Generates flashcards/questions from notes, constrained to strict JSON output |
 | Frontend | Vanilla HTML/CSS/JS (no framework)| Keeps the build simple; styling is being added separately |
 
 ## Project structure
