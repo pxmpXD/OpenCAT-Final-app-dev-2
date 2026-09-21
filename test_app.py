@@ -1,3 +1,4 @@
+# Unit tests for Flask app routes and MySQL database connections
 import unittest
 from dotenv import load_dotenv
 
