@@ -8,6 +8,7 @@ that .env file on startup, so this module just reads the environment.
 """
 import json
 import os
+import time
 
 from google import genai
 from google.genai import types
@@ -27,6 +28,21 @@ if not api_key:
     raise AIGenerationError('GEMINI_API_KEY is not set. Add it to a .env file.')
 
 client = genai.Client(api_key=api_key)
+
+def _call_gemini_with_retry(**kwargs):
+    """Retries a few times on transient server errors (like a 503
+    'model overloaded') before giving up for real."""
+    max_attempts = 5
+    delay = 2  # seconds
+    for attempt in range(1, max_attempts + 1):
+        try:
+            return client.models.generate_content(**kwargs)
+        except Exception as e:
+            transient = 'UNAVAILABLE' in str(e) or '503' in str(e)
+            if not transient or attempt == max_attempts:
+                raise
+            time.sleep(delay)
+            delay *= 2  # 2s, then 4s
 
 
 
@@ -78,7 +94,7 @@ QUESTION_SCHEMA = {
 
 def _generate_json(prompt, schema):
     try:
-        response = client.models.generate_content(
+                response = _call_gemini_with_retry(
             model=MODEL_NAME,
             contents=prompt,
             config=types.GenerateContentConfig(
